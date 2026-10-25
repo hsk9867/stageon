@@ -1,66 +1,70 @@
 # 스테이지온 배포 가이드
 
 ## 구성
-- 정적 사이트: `index.html`, `competitions.html`, `competition.html`, `prepare.html`, `apply.html`, `my.html` + `css/`, `js/`, `data/`
-- 대회 데이터: `data/competitions.json` (단체·종목·지역·대회 목록). 이 파일만 고치면 모든 페이지에 반영됨.
-- 접수 API: `worker.js` (Cloudflare Worker) + D1 (`schema.sql`)
+- 정적 사이트 (GitHub Pages): `index.html` 홈 · `competitions.html` 대회 일정 · `competition.html?id=` 상세 · `apply.html?id=` 접수 · `prepare.html` 대회 준비 쇼핑 · `community.html` 커뮤니티 · `guide.html` 준비 가이드 · `my.html` 내 대회
+- 데이터: `data/competitions.json` (단체·대회·포스터 경로), `data/products.json` (쇼핑 카테고리·상품·패키지)
+- 포스터: `images/posters/` (unmo-*.jpg = WNGP/MUSA/ANBC, npc-*, nabba-*, mm-*)
+- API: `worker.js` (Cloudflare Worker) + D1 (`schema.sql`) — 접수, 주문, 커뮤니티 글·댓글, 관리자 조회
 
 ## 1. 로컬 미리보기
-`file://`로 직접 열면 fetch가 막혀 데이터가 안 나온다. 폴더에서 서버를 띄운다.
 ```
 cd ~/stageon
 python -m http.server 8080
 ```
-→ http://localhost:8080
+→ http://localhost:8080 (file:// 로 열면 JSON fetch가 막혀 데이터가 안 나옴)
 
-## 2. 정적 사이트 배포 (GitHub Pages)
+## 2. 정적 사이트 배포
+GitHub `hsk9867/stageon` main 브랜치 루트 → GitHub Pages 자동 반영 (https://hsk9867.github.io/stageon/)
 ```
 cd ~/stageon
-git init
-git add .
-git commit -m "init: stageon"
-git branch -M main
-git remote add origin https://github.com/hsk9867/stageon.git
-git push -u origin main
+git add -A
+git -c user.name=hsk9867 -c user.email=hsk9867@gmail.com commit -m "update"
+git push
 ```
-GitHub → Settings → Pages → Branch: main / root.
 
-## 3. 접수 API 배포 (Cloudflare Workers + D1)
-사용자가 별도 터미널에서 직접 실행:
+## 3. API 배포 (Cloudflare Workers + D1) — 사용자가 별도 터미널에서 직접 실행
 ```
 cd ~/stageon
 npx wrangler login
-npx wrangler d1 create stageon-db          # 출력된 database_id를 wrangler.toml에 입력
+npx wrangler d1 create stageon-db          # database_id를 wrangler.toml에 입력
 npx wrangler d1 execute stageon-db --remote --file=schema.sql
-npx wrangler secret put ADMIN_TOKEN        # 관리자 조회용 토큰 (TTY 필요 - Claude Code 안에서 실행 금지)
+npx wrangler secret put ADMIN_TOKEN        # 관리자 조회·삭제용 토큰 (TTY 필요)
 npx wrangler deploy
 ```
-배포 후 나온 주소(예: `https://stageon-api.xxx.workers.dev`)를 `js/app.js` 맨 위 `API_BASE`에 넣고 다시 푸시.
+배포 주소(예: `https://stageon-api.xxx.workers.dev`)를 `js/app.js` 맨 위 `API_BASE`에 넣고 푸시.
+API_BASE가 비어 있으면 접수·주문·커뮤니티가 각 사용자의 브라우저(localStorage)에만 저장된다 (데모 모드).
 
-## 4. 접수 내역 확인
-- JSON: `https://stageon-api.xxx.workers.dev/api/applications?token=ADMIN_TOKEN`
-- 대회별: `...?token=ADMIN_TOKEN&competition=wngp-yangju-2026`
-- 엑셀용 CSV: `...?token=ADMIN_TOKEN&format=csv`
+## 4. 관리자 조회
+- 접수: `/api/applications?token=ADMIN_TOKEN` (`&competition=대회id`, `&format=csv`)
+- 주문: `/api/orders?token=ADMIN_TOKEN` (`&format=csv`)
+- 글 삭제: `POST /api/posts/{id}/delete` body `{"token":"ADMIN_TOKEN"}`
 
-## 5. 대회 추가/수정
-`data/competitions.json`의 `competitions` 배열에 항목 추가.
+## 5. 데이터 수정
+### 대회 추가 (`data/competitions.json` → `competitions`)
 ```
 {
-  "id": "고유-id", "name": "대회명", "org": "wngp",
-  "date": "2027-03-20", "region": "대구", "venue": "장소",
-  "categories": ["비키니", "맨즈 피지크"],
-  "types": ["일반", "내추럴", "루키·노비스"],
-  "applyStart": "2027-02-01", "applyEnd": "2027-03-12",
-  "fee": "100,000원",
-  "applyMode": "platform",        // platform = 스테이지온 온라인 접수 / external = 단체 사이트로 이동
-  "officialUrl": "", "desc": "소개"
+  "id": "wngp-xxx-2027", "name": "WNGP 수원", "org": "wngp",
+  "date": "2027-03-27", "region": "경기", "venue": "루터대학교 대강당",
+  "categories": ["비키니", "맨즈 피지크"], "types": ["일반", "내추럴", "루키·노비스"],
+  "applyStart": "2027-02-08", "applyEnd": "2027-03-22", "fee": "180,000원 (1종목)",
+  "applyMode": "platform",            // platform = 스테이지온 접수 / external = 단체 사이트 이동
+  "officialUrl": "https://unmo.kr/shop/tournament_view.php?index_no=...",
+  "poster": "images/posters/xxx-sq.jpg", "posterFull": "images/posters/xxx.jpg",
+  "desc": "소개"
 }
 ```
-- 접수 상태(접수 예정/접수 중/마감 임박/마감/종료)는 날짜로 자동 계산.
-- `applyStart`/`applyEnd`를 비우면 "확인 필요"로 표시.
-- 새 단체는 `organizations`에 `id`, `name`, `color`, `desc`를 추가.
+- 접수 상태(접수 예정/접수 중/마감 임박/마감/종료)는 날짜로 자동 계산. applyStart/End 비우면 "확인 필요".
+- 포스터 출처: WNGP·MUSA·ANBC는 unmo.kr 대회 페이지(목록 썸네일 315/500px, 상세 에디터 이미지), NPC는 ifbbprokorea.com 대회 페이지 og:image, NABBA는 nabba.kr/img, 머슬마니아는 mmkorea.com. 새 포스터는 900px 폭 JPEG로 줄여서 넣기.
+
+### 상품 추가 (`data/products.json` → `products`)
+```
+{"id": "고유id", "category": "posing|coaching|diet|supplement|gear|dayof|bodyprofile|video",
+ "type": "service|product", "name": "상품명", "vendor": "업체", "price": 120000, "unit": "1회",
+ "badge": "BEST|NEW|", "desc": "설명", "tags": ["#태그"], "options": ["옵션1"], "optionLabel": "옵션명"}
+```
+카테고리 추가는 `categories`에 `{id, name, icon, color, desc}`.
 
 ## 6. 바꿔야 할 값
-- `js/app.js` 상단 `SITE` (상호, 대표, 사업자번호, 전화, 메일)
+- `js/app.js` 상단 `SITE` (상호, 대표, 사업자번호, 전화, 메일, 입금 계좌)
 - `wrangler.toml` `ALLOWED_ORIGIN` → 실제 도메인
-- 히어로 배경: 현재 CSS 그라데이션. 사진을 쓰려면 `.ld-hero-bg-1/2`에 `background-image:url(images/hero_01.jpg)` 추가.
+- 상품 이미지: 현재 카테고리 색상 + 이모지. 실제 사진을 쓰려면 `productCard`/모달의 `.product-img`에 이미지 경로 필드(예: `image`)를 추가.

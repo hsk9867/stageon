@@ -1,0 +1,804 @@
+{
+ "updatedAt": "2026-10-25",
+ "categories": [
+  {
+   "id": "posing",
+   "name": "포징 레슨",
+   "icon": "🕺",
+   "color": "#f26d6a",
+   "desc": "종목별 규정 포즈와 무대 루틴을 전문 코치에게 배워요."
+  },
+  {
+   "id": "coaching",
+   "name": "선수 레슨",
+   "icon": "🏋️",
+   "color": "#3b6fe0",
+   "desc": "대회 준비 전 과정을 함께하는 PT·온라인 코칭."
+  },
+  {
+   "id": "diet",
+   "name": "식단",
+   "icon": "🥗",
+   "color": "#1a9f5c",
+   "desc": "대회 식단 정기배송, 식단 컨설팅, 피킹 식단."
+  },
+  {
+   "id": "supplement",
+   "name": "보충제",
+   "icon": "💊",
+   "color": "#7c3aed",
+   "desc": "프로틴·크레아틴·컷팅 보조제 등 시즌 필수 보충제."
+  },
+  {
+   "id": "gear",
+   "name": "운동용품",
+   "icon": "🎽",
+   "color": "#c2410c",
+   "desc": "포징 트렁크·비키니, 펌핑 밴드, 태닝 제품."
+  },
+  {
+   "id": "dayof",
+   "name": "대회 당일",
+   "icon": "✨",
+   "color": "#0f766e",
+   "desc": "태닝·헤어메이크업·무대 사진 등 당일 서비스."
+  },
+  {
+   "id": "bodyprofile",
+   "name": "바디프로필",
+   "icon": "📸",
+   "color": "#be185d",
+   "desc": "대회 컨디션 그대로 남기는 바디프로필 스튜디오."
+  },
+  {
+   "id": "video",
+   "name": "대회 영상 촬영",
+   "icon": "🎬",
+   "color": "#1e293b",
+   "desc": "프리저징·파이널 무대를 4K로 기록하는 촬영 서비스."
+  }
+ ],
+ "bundle": {
+  "id": "bundle-first-stage",
+  "name": "첫 무대 준비 패키지",
+  "desc": "첫 출전 선수가 가장 많이 선택한 구성. 포징 레슨 4회 + 식단 컨설팅 + 태닝 + 펌핑 밴드를 한 번에.",
+  "price": 390000,
+  "originalPrice": 468000,
+  "items": [
+   "posing-1on1-4",
+   "diet-consult",
+   "dayof-tanning",
+   "gear-band"
+  ],
+  "tags": [
+   "#17% 할인",
+   "#첫 출전 추천",
+   "#코치 배정"
+  ]
+ },
+ "products": [
+  {
+   "id": "posing-1on1-4",
+   "category": "posing",
+   "type": "service",
+   "name": "1:1 포징 레슨 4회",
+   "vendor": "스테이지온 포징 코치단",
+   "price": 240000,
+   "unit": "4회",
+   "badge": "BEST",
+   "desc": "종목별 전문 코치가 규정 포즈부터 전환 동작, 무대 동선까지 1:1로 잡아드려요. 영상 피드백 포함.",
+   "tags": [
+    "#비키니",
+    "#맨즈 피지크",
+    "#클래식",
+    "#서울·경기"
+   ],
+   "options": [
+    "비키니",
+    "맨즈 피지크",
+    "클래식 피지크",
+    "보디빌딩",
+    "스포츠모델",
+    "웰니스·피규어"
+   ],
+   "optionLabel": "종목"
+  },
+  {
+   "id": "posing-1on1-8",
+   "category": "posing",
+   "type": "service",
+   "name": "1:1 포징 레슨 8회",
+   "vendor": "스테이지온 포징 코치단",
+   "price": 440000,
+   "unit": "8회",
+   "badge": "",
+   "desc": "8주 과정으로 포징 완성도를 끌어올려요. 자유 포징 루틴 구성과 음악 편집 지원.",
+   "tags": [
+    "#8주 과정",
+    "#루틴 구성",
+    "#영상 피드백"
+   ],
+   "options": [
+    "비키니",
+    "맨즈 피지크",
+    "클래식 피지크",
+    "보디빌딩",
+    "스포츠모델",
+    "웰니스·피규어"
+   ],
+   "optionLabel": "종목"
+  },
+  {
+   "id": "posing-group",
+   "category": "posing",
+   "type": "service",
+   "name": "그룹 포징 클래스 (4인)",
+   "vendor": "스테이지온 포징 코치단",
+   "price": 60000,
+   "unit": "1회 90분",
+   "badge": "",
+   "desc": "같은 종목 선수 4명이 함께 배우는 그룹 클래스. 서로의 포징을 보며 비교 학습해요.",
+   "tags": [
+    "#소그룹",
+    "#주말 개강"
+   ],
+   "options": [
+    "비키니",
+    "맨즈 피지크",
+    "클래식 피지크",
+    "보디빌딩"
+   ],
+   "optionLabel": "종목"
+  },
+  {
+   "id": "posing-online",
+   "category": "posing",
+   "type": "service",
+   "name": "온라인 포징 영상 피드백",
+   "vendor": "스테이지온 포징 코치단",
+   "price": 35000,
+   "unit": "1회",
+   "badge": "NEW",
+   "desc": "포징 영상을 보내면 48시간 내 코치가 구간별 피드백 영상을 보내드려요. 지방 선수 추천.",
+   "tags": [
+    "#전국",
+    "#48시간 내"
+   ],
+   "options": [
+    "비키니",
+    "맨즈 피지크",
+    "클래식 피지크",
+    "보디빌딩",
+    "스포츠모델",
+    "웰니스·피규어"
+   ],
+   "optionLabel": "종목"
+  },
+  {
+   "id": "coach-pt-12w",
+   "category": "coaching",
+   "type": "service",
+   "name": "대회 준비 PT 12주 (주 2회)",
+   "vendor": "제휴 대회반 짐",
+   "price": 1680000,
+   "unit": "24회",
+   "badge": "BEST",
+   "desc": "대회 출전 경험이 있는 트레이너가 12주간 운동·식단·컨디셔닝을 관리해요. 제휴 짐 지역 선택.",
+   "tags": [
+    "#대회반",
+    "#주 2회",
+    "#체성분 측정"
+   ],
+   "options": [
+    "서울 강남",
+    "서울 강북",
+    "경기 남부",
+    "경기 북부",
+    "인천",
+    "부산",
+    "대구",
+    "대전"
+   ],
+   "optionLabel": "지역"
+  },
+  {
+   "id": "coach-online-12w",
+   "category": "coaching",
+   "type": "service",
+   "name": "온라인 코칭 12주",
+   "vendor": "스테이지온 코치단",
+   "price": 480000,
+   "unit": "12주",
+   "badge": "",
+   "desc": "주간 운동 프로그램 + 식단 + 주 1회 화상 점검. 전국 어디서나 대회 준비 가능.",
+   "tags": [
+    "#전국",
+    "#주간 프로그램",
+    "#화상 점검"
+   ],
+   "options": [
+    "첫 출전",
+    "2회 이상 출전"
+   ],
+   "optionLabel": "경력"
+  },
+  {
+   "id": "coach-peak",
+   "category": "coaching",
+   "type": "service",
+   "name": "피킹 위크 컨디셔닝 코칭",
+   "vendor": "스테이지온 코치단",
+   "price": 150000,
+   "unit": "대회 전 7일",
+   "badge": "",
+   "desc": "대회 전 마지막 7일 수분·탄수화물·나트륨 조절을 매일 체크. 당일 펌핑 가이드 포함.",
+   "tags": [
+    "#D-7",
+    "#매일 체크"
+   ],
+   "options": [
+    "남성 종목",
+    "여성 종목"
+   ],
+   "optionLabel": "구분"
+  },
+  {
+   "id": "coach-checkup",
+   "category": "coaching",
+   "type": "service",
+   "name": "컨디션 점검 1회 상담",
+   "vendor": "스테이지온 코치단",
+   "price": 50000,
+   "unit": "60분",
+   "badge": "",
+   "desc": "현재 체성분과 사진을 보고 대회까지 남은 기간의 전략을 잡아드려요. 종목 선택이 고민될 때.",
+   "tags": [
+    "#종목 추천",
+    "#화상 가능"
+   ],
+   "options": [
+    "대면 (서울)",
+    "화상"
+   ],
+   "optionLabel": "방식"
+  },
+  {
+   "id": "diet-box-4w",
+   "category": "diet",
+   "type": "product",
+   "name": "대회 식단 도시락 4주 정기배송",
+   "vendor": "핏밀 키친",
+   "price": 396000,
+   "unit": "주 5일 · 1일 2식",
+   "badge": "BEST",
+   "desc": "대회 시즌 단계별 매크로에 맞춘 도시락. 매주 체중에 따라 탄수화물 양 조절 가능.",
+   "tags": [
+    "#새벽 배송",
+    "#매크로 조절",
+    "#주 5일"
+   ],
+   "options": [
+    "감량기 (1,500kcal)",
+    "유지기 (1,800kcal)",
+    "증량기 (2,200kcal)"
+   ],
+   "optionLabel": "구성"
+  },
+  {
+   "id": "diet-chicken",
+   "category": "diet",
+   "type": "product",
+   "name": "닭가슴살 20팩 (100g)",
+   "vendor": "핏밀 키친",
+   "price": 32000,
+   "unit": "20팩",
+   "badge": "",
+   "desc": "수비드 닭가슴살 100g 20팩. 저염 플레인·허브·갈릭 3종.",
+   "tags": [
+    "#저염",
+    "#냉동"
+   ],
+   "options": [
+    "플레인",
+    "허브",
+    "갈릭",
+    "혼합"
+   ],
+   "optionLabel": "맛"
+  },
+  {
+   "id": "diet-consult",
+   "category": "diet",
+   "type": "service",
+   "name": "대회 식단 컨설팅 (12주 플랜)",
+   "vendor": "스테이지온 영양 코치",
+   "price": 120000,
+   "unit": "1회 + 주간 조정",
+   "badge": "",
+   "desc": "체성분·생활 패턴에 맞춘 12주 식단표. 2주마다 카톡으로 조정해 드려요.",
+   "tags": [
+    "#맞춤 식단표",
+    "#2주 조정"
+   ],
+   "options": [
+    "남성",
+    "여성"
+   ],
+   "optionLabel": "구분"
+  },
+  {
+   "id": "diet-peak-kit",
+   "category": "diet",
+   "type": "product",
+   "name": "피킹 위크 식단 키트",
+   "vendor": "핏밀 키친",
+   "price": 58000,
+   "unit": "7일분",
+   "badge": "NEW",
+   "desc": "대회 전 7일 탄수 로딩용 쌀과자·고구마·백미 밥·전해질 구성. 당일 간식 포함.",
+   "tags": [
+    "#D-7",
+    "#당일 간식"
+   ],
+   "options": [],
+   "optionLabel": ""
+  },
+  {
+   "id": "supp-whey",
+   "category": "supplement",
+   "type": "product",
+   "name": "WPI 분리유청 단백질 2kg",
+   "vendor": "제휴 보충제 브랜드",
+   "price": 69000,
+   "unit": "2kg",
+   "badge": "BEST",
+   "desc": "유당 제거 분리유청. 컷팅기 탄수·지방 최소화.",
+   "tags": [
+    "#WPI",
+    "#2kg"
+   ],
+   "options": [
+    "초코",
+    "바닐라",
+    "딸기",
+    "무향"
+   ],
+   "optionLabel": "맛"
+  },
+  {
+   "id": "supp-creatine",
+   "category": "supplement",
+   "type": "product",
+   "name": "크레아틴 모노하이드레이트 500g",
+   "vendor": "제휴 보충제 브랜드",
+   "price": 29000,
+   "unit": "500g",
+   "badge": "",
+   "desc": "순도 99.9% 미분말. 피킹 전 중단 시점은 코치와 상의하세요.",
+   "tags": [
+    "#무향",
+    "#100회분"
+   ],
+   "options": [],
+   "optionLabel": ""
+  },
+  {
+   "id": "supp-cut",
+   "category": "supplement",
+   "type": "product",
+   "name": "컷팅 서포트 (카페인·L-카르니틴)",
+   "vendor": "제휴 보충제 브랜드",
+   "price": 45000,
+   "unit": "60캡슐",
+   "badge": "",
+   "desc": "운동 전 섭취용. 내추럴 단체 금지 성분 미포함 제품만 취급해요.",
+   "tags": [
+    "#내추럴 OK",
+    "#운동 전"
+   ],
+   "options": [],
+   "optionLabel": ""
+  },
+  {
+   "id": "supp-electrolyte",
+   "category": "supplement",
+   "type": "product",
+   "name": "전해질 파우더 30포",
+   "vendor": "제휴 보충제 브랜드",
+   "price": 24000,
+   "unit": "30포",
+   "badge": "",
+   "desc": "감량기 수분·전해질 보충. 피킹 위크 나트륨 조절에도 활용.",
+   "tags": [
+    "#무설탕"
+   ],
+   "options": [
+    "레몬",
+    "자몽"
+   ],
+   "optionLabel": "맛"
+  },
+  {
+   "id": "supp-multi",
+   "category": "supplement",
+   "type": "product",
+   "name": "종합비타민 + 오메가3 세트",
+   "vendor": "제휴 보충제 브랜드",
+   "price": 38000,
+   "unit": "2개월분",
+   "badge": "",
+   "desc": "감량기 미량영양소 보충 세트.",
+   "tags": [
+    "#2개월"
+   ],
+   "options": [],
+   "optionLabel": ""
+  },
+  {
+   "id": "gear-trunk",
+   "category": "gear",
+   "type": "product",
+   "name": "포징 트렁크 (클래식·보디빌딩)",
+   "vendor": "스테이지웨어",
+   "price": 89000,
+   "unit": "1벌",
+   "badge": "BEST",
+   "desc": "단체 규정 컷 반영. 색상 12종, 사이즈 교환 1회 무료.",
+   "tags": [
+    "#규정 컷",
+    "#교환 무료"
+   ],
+   "options": [
+    "S",
+    "M",
+    "L",
+    "XL"
+   ],
+   "optionLabel": "사이즈"
+  },
+  {
+   "id": "gear-boardshort",
+   "category": "gear",
+   "type": "product",
+   "name": "맨즈 피지크 보드숏",
+   "vendor": "스테이지웨어",
+   "price": 79000,
+   "unit": "1벌",
+   "badge": "",
+   "desc": "무릎 위 길이 규정 반영. 로고 없는 단색·패턴.",
+   "tags": [
+    "#규정 길이"
+   ],
+   "options": [
+    "28",
+    "30",
+    "32",
+    "34"
+   ],
+   "optionLabel": "사이즈"
+  },
+  {
+   "id": "gear-bikini",
+   "category": "gear",
+   "type": "product",
+   "name": "대회용 비키니 맞춤 제작",
+   "vendor": "스테이지웨어",
+   "price": 350000,
+   "unit": "1벌",
+   "badge": "",
+   "desc": "원단·스톤·컷 선택 맞춤 제작. 제작 3~4주 소요, 대회 4주 전 주문 권장.",
+   "tags": [
+    "#맞춤",
+    "#3~4주 소요",
+    "#스톤 작업"
+   ],
+   "options": [
+    "비키니 (규정 컷)",
+    "웰니스 컷",
+    "모노키니"
+   ],
+   "optionLabel": "종류"
+  },
+  {
+   "id": "gear-band",
+   "category": "gear",
+   "type": "product",
+   "name": "펌핑 밴드 3종 세트",
+   "vendor": "스테이지웨어",
+   "price": 19000,
+   "unit": "3개",
+   "badge": "",
+   "desc": "백스테이지 펌핑용 저·중·고 강도 밴드. 파우치 포함.",
+   "tags": [
+    "#백스테이지"
+   ],
+   "options": [],
+   "optionLabel": ""
+  },
+  {
+   "id": "gear-tan-kit",
+   "category": "gear",
+   "type": "product",
+   "name": "셀프 태닝 키트 (컬러 + 글레이즈)",
+   "vendor": "스테이지웨어",
+   "price": 48000,
+   "unit": "1세트",
+   "badge": "",
+   "desc": "대회용 다크 컬러 태닝 로션 + 무대 글레이즈 + 장갑. 2회 분량.",
+   "tags": [
+    "#2회 분량"
+   ],
+   "options": [],
+   "optionLabel": ""
+  },
+  {
+   "id": "gear-heel",
+   "category": "gear",
+   "type": "product",
+   "name": "비키니 포징 힐 (클리어)",
+   "vendor": "스테이지웨어",
+   "price": 65000,
+   "unit": "1켤레",
+   "badge": "",
+   "desc": "투명 스트랩 12cm 규정 힐. 미끄럼 방지 밑창.",
+   "tags": [
+    "#12cm",
+    "#클리어"
+   ],
+   "options": [
+    "225",
+    "230",
+    "235",
+    "240",
+    "245",
+    "250"
+   ],
+   "optionLabel": "사이즈"
+  },
+  {
+   "id": "dayof-tanning",
+   "category": "dayof",
+   "type": "service",
+   "name": "대회 태닝 (전날 1차 + 당일 보정)",
+   "vendor": "제휴 태닝 스튜디오",
+   "price": 120000,
+   "unit": "2회",
+   "badge": "BEST",
+   "desc": "대회 전날 스튜디오 1차 시공, 당일 현장 보정. 대회장 인근 스튜디오 배정.",
+   "tags": [
+    "#현장 보정",
+    "#대회장 인근"
+   ],
+   "options": [
+    "서울",
+    "경기",
+    "인천",
+    "부산",
+    "대구",
+    "대전"
+   ],
+   "optionLabel": "지역"
+  },
+  {
+   "id": "dayof-makeup",
+   "category": "dayof",
+   "type": "service",
+   "name": "헤어·메이크업 출장 (여성 종목)",
+   "vendor": "제휴 아티스트",
+   "price": 180000,
+   "unit": "1회",
+   "badge": "",
+   "desc": "대회 당일 새벽 대회장 또는 숙소 출장. 무대 조명용 메이크업.",
+   "tags": [
+    "#출장",
+    "#무대 조명"
+   ],
+   "options": [
+    "서울·경기",
+    "그 외 지역 (출장비 별도)"
+   ],
+   "optionLabel": "지역"
+  },
+  {
+   "id": "dayof-photo",
+   "category": "dayof",
+   "type": "service",
+   "name": "무대 사진 패키지",
+   "vendor": "제휴 스포츠 포토그래퍼",
+   "price": 90000,
+   "unit": "보정 20컷",
+   "badge": "",
+   "desc": "프리저징·파이널 전 과정 촬영, 보정본 20컷 + 원본 전체.",
+   "tags": [
+    "#보정 20컷",
+    "#원본 제공"
+   ],
+   "options": [],
+   "optionLabel": ""
+  },
+  {
+   "id": "dayof-helper",
+   "category": "dayof",
+   "type": "service",
+   "name": "백스테이지 헬퍼",
+   "vendor": "스테이지온 스태프",
+   "price": 100000,
+   "unit": "1일",
+   "badge": "NEW",
+   "desc": "집결부터 무대까지 짐 관리, 태닝 보정, 펌핑 보조, 호출 체크. 혼자 가는 선수 추천.",
+   "tags": [
+    "#1일",
+    "#혼자 출전"
+   ],
+   "options": [],
+   "optionLabel": ""
+  },
+  {
+   "id": "bp-studio-basic",
+   "category": "bodyprofile",
+   "type": "service",
+   "name": "바디프로필 베이직 (1컨셉·보정 5컷)",
+   "vendor": "제휴 바디프로필 스튜디오",
+   "price": 250000,
+   "unit": "60분",
+   "badge": "BEST",
+   "desc": "대회 전후 컨디션을 남기는 기본 패키지. 스튜디오 조명 1컨셉, 보정본 5컷 + 원본 전체.",
+   "tags": [
+    "#1컨셉",
+    "#보정 5컷",
+    "#대회 주간 예약"
+   ],
+   "options": [
+    "서울 강남",
+    "서울 마포",
+    "경기 분당",
+    "부산",
+    "대구"
+   ],
+   "optionLabel": "스튜디오"
+  },
+  {
+   "id": "bp-studio-premium",
+   "category": "bodyprofile",
+   "type": "service",
+   "name": "바디프로필 프리미엄 (2컨셉·보정 15컷)",
+   "vendor": "제휴 바디프로필 스튜디오",
+   "price": 490000,
+   "unit": "120분",
+   "badge": "",
+   "desc": "2컨셉 촬영 + 헤어·메이크업 + 태닝 보정. 대회 다음 날 예약 시 무대 컨디션 그대로.",
+   "tags": [
+    "#2컨셉",
+    "#헤어메이크업 포함",
+    "#보정 15컷"
+   ],
+   "options": [
+    "서울 강남",
+    "서울 마포",
+    "경기 분당",
+    "부산",
+    "대구"
+   ],
+   "optionLabel": "스튜디오"
+  },
+  {
+   "id": "bp-couple",
+   "category": "bodyprofile",
+   "type": "service",
+   "name": "듀오·커플 바디프로필",
+   "vendor": "제휴 바디프로필 스튜디오",
+   "price": 420000,
+   "unit": "90분 · 2인",
+   "badge": "",
+   "desc": "팀 동료·커플 2인 촬영. 개인 컷 각 5컷 + 듀오 컷 5컷.",
+   "tags": [
+    "#2인",
+    "#보정 15컷"
+   ],
+   "options": [
+    "서울 강남",
+    "서울 마포",
+    "경기 분당"
+   ],
+   "optionLabel": "스튜디오"
+  },
+  {
+   "id": "bp-stage-day",
+   "category": "bodyprofile",
+   "type": "service",
+   "name": "대회 당일 백스테이지 프로필",
+   "vendor": "제휴 스포츠 포토그래퍼",
+   "price": 150000,
+   "unit": "대회장 30분",
+   "badge": "NEW",
+   "desc": "대회장 백스테이지에서 태닝·펌핑 완료 상태로 촬영. 보정 5컷.",
+   "tags": [
+    "#대회장",
+    "#보정 5컷"
+   ],
+   "options": [],
+   "optionLabel": ""
+  },
+  {
+   "id": "vid-stage-basic",
+   "category": "video",
+   "type": "service",
+   "name": "무대 영상 촬영 (개인 풀샷)",
+   "vendor": "제휴 영상팀",
+   "price": 120000,
+   "unit": "1종목",
+   "badge": "BEST",
+   "desc": "프리저징·파이널 전 라운드 4K 촬영. 내 출전 구간만 편집한 개인 영상 제공(3~5분).",
+   "tags": [
+    "#4K",
+    "#개인 편집본",
+    "#1종목"
+   ],
+   "options": [
+    "1종목",
+    "2종목 (+60,000원)",
+    "3종목 (+120,000원)"
+   ],
+   "optionLabel": "종목 수"
+  },
+  {
+   "id": "vid-highlight",
+   "category": "video",
+   "type": "service",
+   "name": "하이라이트 릴스 편집 (60초)",
+   "vendor": "제휴 영상팀",
+   "price": 80000,
+   "unit": "1편",
+   "badge": "",
+   "desc": "무대 영상 + 백스테이지 컷으로 SNS용 60초 세로 릴스 제작. 음악·자막 포함.",
+   "tags": [
+    "#릴스",
+    "#세로 영상",
+    "#SNS"
+   ],
+   "options": [],
+   "optionLabel": ""
+  },
+  {
+   "id": "vid-full-day",
+   "category": "video",
+   "type": "service",
+   "name": "대회 당일 밀착 다큐 촬영",
+   "vendor": "제휴 영상팀",
+   "price": 450000,
+   "unit": "1일",
+   "badge": "",
+   "desc": "집결부터 시상까지 하루를 밀착 촬영해 8~10분 다큐 영상으로 제작. 바디프로필 스틸 10컷 포함.",
+   "tags": [
+    "#밀착 촬영",
+    "#다큐 편집",
+    "#스틸 10컷"
+   ],
+   "options": [
+    "서울·경기",
+    "그 외 지역 (출장비 별도)"
+   ],
+   "optionLabel": "지역"
+  },
+  {
+   "id": "vid-posing-review",
+   "category": "video",
+   "type": "service",
+   "name": "포징 분석용 리허설 촬영",
+   "vendor": "제휴 영상팀",
+   "price": 60000,
+   "unit": "60분",
+   "badge": "NEW",
+   "desc": "대회 2주 전 스튜디오에서 포징 루틴을 다각도 촬영. 코치 피드백용 원본 제공.",
+   "tags": [
+    "#다각도",
+    "#코치 피드백용"
+   ],
+   "options": [
+    "서울 강남",
+    "경기 분당"
+   ],
+   "optionLabel": "스튜디오"
+  }
+ ]
+}
