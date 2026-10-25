@@ -1698,16 +1698,23 @@
       })
     );
     const searchBox = document.getElementById('comm-search');
-    document.getElementById('comm-search-toggle').addEventListener('click', () => {
-      searchBox.hidden = !searchBox.hidden;
-      if (!searchBox.hidden) document.getElementById('comm-q').focus();
-    });
-    document.getElementById('comm-q').addEventListener('input', (e) => {
-      q = e.target.value.trim();
-      if (q) category = 'all';
-      renderList();
-    });
-    document.getElementById('comm-write').addEventListener('click', () => openWrite());
+    const searchToggle = document.getElementById('comm-search-toggle');
+    const qInput = document.getElementById('comm-q');
+    const writeBtn = document.getElementById('comm-write');
+    if (searchToggle && searchBox) {
+      searchToggle.addEventListener('click', () => {
+        searchBox.hidden = !searchBox.hidden;
+        if (!searchBox.hidden && qInput) qInput.focus();
+      });
+    }
+    if (qInput) {
+      qInput.addEventListener('input', (e) => {
+        q = e.target.value.trim();
+        if (q) category = 'all';
+        renderList();
+      });
+    }
+    if (writeBtn) writeBtn.addEventListener('click', () => openWrite());
 
     if (S.qs('id')) renderDetail(S.qs('id'));
     else renderList();
