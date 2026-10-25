@@ -10,6 +10,7 @@
  *        GET  /api/posts/:id                  → { ok, post }  (댓글 포함, 조회수 +1)
  *        POST /api/posts                      → { ok, post }
  *        POST /api/posts/:id/comments         → { ok, comment }
+ *        POST /api/posts/:id/like {on}        → { ok, likes }
  *        POST /api/posts/:id/delete {password}→ { ok }
  * 관리자 GET  /api/applications?token=…  GET /api/orders?token=…  (format=csv 지원)
  *        POST /api/posts/:id/delete {token}   (관리자 삭제)
@@ -114,7 +115,7 @@ export default {
       const category = url.searchParams.get('category') || 'all';
       const q = (url.searchParams.get('q') || '').trim();
       const limit = Math.min(Number(url.searchParams.get('limit') || 50), 200);
-      let sql = `SELECT p.id, p.category, p.title, p.nickname, p.views, p.created_at, p.image,
+      let sql = `SELECT p.id, p.category, p.title, p.nickname, p.views, p.likes, p.created_at, p.image,
                    (SELECT COUNT(*) FROM comments c WHERE c.post_id = p.id) AS comment_count
                  FROM posts p WHERE p.deleted = 0`;
       const binds = [];
@@ -145,7 +146,7 @@ export default {
       const post = await env.DB.prepare('SELECT * FROM posts WHERE id = ?').bind(id).first();
       return json({ ok: true, post: Object.assign(rowToPost(post), { body, comments: [] }) });
     }
-    const m = path.match(/^\/api\/posts\/([A-Za-z0-9_-]+)(?:\/(comments|delete))?$/);
+    const m = path.match(/^\/api\/posts\/([A-Za-z0-9_-]+)(?:\/(comments|delete|like))?$/);
     if (m) {
       const id = m[1];
       const sub = m[2];
@@ -165,6 +166,13 @@ export default {
           .bind(id, nickname, body, await sha256(String((b && b.password) || '')), ip)
           .run();
         return json({ ok: true, comment: { id: r.meta && r.meta.last_row_id, nickname, body, createdAt: new Date().toISOString() } });
+      }
+      if (sub === 'like' && request.method === 'POST') {
+        const b = (await readJson()) || {};
+        const delta = b.on === false ? -1 : 1;
+        await env.DB.prepare('UPDATE posts SET likes = MAX(0, likes + ?) WHERE id = ?').bind(delta, id).run();
+        const row = await env.DB.prepare('SELECT likes FROM posts WHERE id = ?').bind(id).first();
+        return json({ ok: true, likes: row ? row.likes : 0 });
       }
       if (sub === 'delete' && request.method === 'POST') {
         const b = (await readJson()) || {};
@@ -215,7 +223,7 @@ function mkId() {
   return Date.now().toString(36) + Math.random().toString(36).slice(2, 6);
 }
 function rowToPost(r) {
-  return { id: r.id, category: r.category, title: r.title, nickname: r.nickname, views: r.views, createdAt: r.created_at, image: r.image || '', commentCount: r.comment_count || 0 };
+  return { id: r.id, category: r.category, title: r.title, nickname: r.nickname, views: r.views, createdAt: r.created_at, image: r.image || '', likes: r.likes || 0, commentCount: r.comment_count || 0 };
 }
 function safeJson(s) {
   try {

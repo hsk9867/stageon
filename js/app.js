@@ -1286,18 +1286,18 @@
   ];
   const CAT = Object.fromEntries(CATS.map(([id, name, color]) => [id, { id, name, color }]));
   const SEED_POSTS = [
-    { id: 'o1', category: 'owon', title: '오운완 🔥 등 데드리프트 5x5 마무리', nickname: '클래식피지크', image: 'images/photos/deadlift.jpg', body: 'D-7 마지막 고중량. 이제부턴 컨디셔닝만! 오늘도 모두 오운완 하세요.', createdAt: '2026-10-24T20:10:00+09:00', views: 150, comments: [{ nickname: '첫무대', body: '멋있어요 피킹 화이팅!', createdAt: '2026-10-24T20:40:00+09:00' }] },
-    { id: 'o2', category: 'owon', title: '오운완 · 어깨 덤벨 프레스 + 사이드 레터럴 20세트', nickname: '비키니준비중', image: 'images/photos/woman.jpg', body: '대회 12주 남았는데 어깨 라인 잡느라 사이드 레터럴만 20세트… 오늘 운동 완료!', createdAt: '2026-10-25T07:30:00+09:00', views: 88, comments: [] },
-    { id: 'o3', category: 'owon', title: '새벽 오운완, 공복 유산소 40분 + 하체', nickname: '수원러', image: 'images/photos/gym2.jpg', body: '공복 유산소 40분 끝내고 레그프레스 가볍게. 용인 대회 2주 전이라 다리 컨디션 체크 중입니다.', createdAt: '2026-10-25T06:05:00+09:00', views: 61, comments: [] },
-    { id: 'o4', category: 'owon', title: '오운완 — 가슴·삼두 펌핑 세션', nickname: '12주남음', image: 'images/photos/gym1.jpg', body: '덤벨 프레스 4세트, 케이블 플라이 4세트, 삼두 푸시다운 5세트. 내일은 휴식!', createdAt: '2026-10-23T21:50:00+09:00', views: 73, comments: [] },
-    { id: 'p1', category: 'review', title: 'WNGP 수원 첫 출전 후기 (노비스 맨즈 피지크)', nickname: '첫무대', body: '생애 첫 대회 다녀왔어요. 계측은 생각보다 빨리 끝났고, 백스테이지가 추우니 큰 수건이랑 가운 꼭 챙기세요. 펌핑은 밴드로 충분했습니다. 태닝은 전날 1차 + 당일 보정 조합이 정답이었어요.', createdAt: '2026-04-02T10:12:00+09:00', views: 412, comments: [{ nickname: '비키니준비중', body: '축하드려요! 태닝은 어디서 하셨어요?', createdAt: '2026-04-02T12:00:00+09:00' }, { nickname: '첫무대', body: '수원역 근처 스튜디오요. 대회장 근처라 당일 보정도 편했어요.', createdAt: '2026-04-02T13:10:00+09:00' }] },
-    { id: 'p2', category: 'qna', title: '비키니 vs 웰니스 어떤 종목이 맞을까요? (하체 발달형)', nickname: '12주남음', body: '160cm, 하체 비율이 큰 편이고 둔근이 발달한 체형인데 코치님은 웰니스를 추천하세요. 두 종목 다 나가본 분 계시면 심사 차이 알려주세요.', createdAt: '2026-10-20T21:30:00+09:00', views: 188, comments: [{ nickname: '웰니스3회', body: '하체 발달형이면 웰니스가 확실히 유리해요. 포징이 비키니랑 달라서 레슨은 따로 받으셔야 해요.', createdAt: '2026-10-21T09:00:00+09:00' }] },
-    { id: 'p3', category: 'diet', title: '피킹 위크 탄수화물 로딩 어떻게 하시나요', nickname: '클래식피지크', body: '대회 D-7입니다. 수분 조절 없이 탄수만 올리는 방식으로 가려는데, 경험자분들 루틴 공유 부탁드려요.', createdAt: '2026-10-23T08:15:00+09:00', views: 97, comments: [] },
-    { id: 'p4', category: 'mate', title: '11/7 WNGP 용인 같이 가실 분 (수원 출발)', nickname: '수원러', body: '수원에서 차로 갑니다. 2분 동승 가능하고 짐 관리 서로 도와요. 맨즈 피지크 오픈 출전입니다.', createdAt: '2026-10-24T19:40:00+09:00', views: 64, comments: [] },
-    { id: 'p5', category: 'posing', title: '맨즈 피지크 보드숏 규정 길이 질문', nickname: '보드숏고민', body: '무릎 위 몇 cm까지 허용되는지 단체마다 다른가요? WNGP 기준으로 아시는 분 계실까요.', createdAt: '2026-10-22T14:05:00+09:00', views: 140, comments: [{ nickname: '운영진', body: 'WNGP는 무릎 위 길이면 통과되고 로고는 작은 것만 허용돼요. 자세한 건 unmo.kr 대회 페이지 규정 참고하세요.', createdAt: '2026-10-22T15:00:00+09:00' }] },
-    { id: 'p6', category: 'market', title: '비키니 포징 힐 235 (1회 착용) 나눔', nickname: '시즌오프', body: '클리어 12cm, 한 번 신었어요. 택배비만 받습니다. 댓글 주세요.', createdAt: '2026-10-19T11:00:00+09:00', views: 221, comments: [] },
+    { id: 'o1', likes: 24, category: 'owon', title: '오운완 🔥 등 데드리프트 5x5 마무리', nickname: '클래식피지크', image: 'images/photos/deadlift.jpg', body: 'D-7 마지막 고중량. 이제부턴 컨디셔닝만! 오늘도 모두 오운완 하세요.', createdAt: '2026-10-24T20:10:00+09:00', views: 150, comments: [{ nickname: '첫무대', body: '멋있어요 피킹 화이팅!', createdAt: '2026-10-24T20:40:00+09:00' }] },
+    { id: 'o2', likes: 31, category: 'owon', title: '오운완 · 어깨 덤벨 프레스 + 사이드 레터럴 20세트', nickname: '비키니준비중', image: 'images/photos/woman.jpg', body: '대회 12주 남았는데 어깨 라인 잡느라 사이드 레터럴만 20세트… 오늘 운동 완료!', createdAt: '2026-10-25T07:30:00+09:00', views: 88, comments: [] },
+    { id: 'o3', likes: 12, category: 'owon', title: '새벽 오운완, 공복 유산소 40분 + 하체', nickname: '수원러', image: 'images/photos/gym2.jpg', body: '공복 유산소 40분 끝내고 레그프레스 가볍게. 용인 대회 2주 전이라 다리 컨디션 체크 중입니다.', createdAt: '2026-10-25T06:05:00+09:00', views: 61, comments: [] },
+    { id: 'o4', likes: 9, category: 'owon', title: '오운완 — 가슴·삼두 펌핑 세션', nickname: '12주남음', image: 'images/photos/gym1.jpg', body: '덤벨 프레스 4세트, 케이블 플라이 4세트, 삼두 푸시다운 5세트. 내일은 휴식!', createdAt: '2026-10-23T21:50:00+09:00', views: 73, comments: [] },
+    { id: 'p1', likes: 57, category: 'review', title: 'WNGP 수원 첫 출전 후기 (노비스 맨즈 피지크)', nickname: '첫무대', body: '생애 첫 대회 다녀왔어요. 계측은 생각보다 빨리 끝났고, 백스테이지가 추우니 큰 수건이랑 가운 꼭 챙기세요. 펌핑은 밴드로 충분했습니다. 태닝은 전날 1차 + 당일 보정 조합이 정답이었어요.', createdAt: '2026-04-02T10:12:00+09:00', views: 412, comments: [{ nickname: '비키니준비중', body: '축하드려요! 태닝은 어디서 하셨어요?', createdAt: '2026-04-02T12:00:00+09:00' }, { nickname: '첫무대', body: '수원역 근처 스튜디오요. 대회장 근처라 당일 보정도 편했어요.', createdAt: '2026-04-02T13:10:00+09:00' }] },
+    { id: 'p2', likes: 18, category: 'qna', title: '비키니 vs 웰니스 어떤 종목이 맞을까요? (하체 발달형)', nickname: '12주남음', body: '160cm, 하체 비율이 큰 편이고 둔근이 발달한 체형인데 코치님은 웰니스를 추천하세요. 두 종목 다 나가본 분 계시면 심사 차이 알려주세요.', createdAt: '2026-10-20T21:30:00+09:00', views: 188, comments: [{ nickname: '웰니스3회', body: '하체 발달형이면 웰니스가 확실히 유리해요. 포징이 비키니랑 달라서 레슨은 따로 받으셔야 해요.', createdAt: '2026-10-21T09:00:00+09:00' }] },
+    { id: 'p3', likes: 6, category: 'diet', title: '피킹 위크 탄수화물 로딩 어떻게 하시나요', nickname: '클래식피지크', body: '대회 D-7입니다. 수분 조절 없이 탄수만 올리는 방식으로 가려는데, 경험자분들 루틴 공유 부탁드려요.', createdAt: '2026-10-23T08:15:00+09:00', views: 97, comments: [] },
+    { id: 'p4', likes: 4, category: 'mate', title: '11/7 WNGP 용인 같이 가실 분 (수원 출발)', nickname: '수원러', body: '수원에서 차로 갑니다. 2분 동승 가능하고 짐 관리 서로 도와요. 맨즈 피지크 오픈 출전입니다.', createdAt: '2026-10-24T19:40:00+09:00', views: 64, comments: [] },
+    { id: 'p5', likes: 11, category: 'posing', title: '맨즈 피지크 보드숏 규정 길이 질문', nickname: '보드숏고민', body: '무릎 위 몇 cm까지 허용되는지 단체마다 다른가요? WNGP 기준으로 아시는 분 계실까요.', createdAt: '2026-10-22T14:05:00+09:00', views: 140, comments: [{ nickname: '운영진', body: 'WNGP는 무릎 위 길이면 통과되고 로고는 작은 것만 허용돼요. 자세한 건 unmo.kr 대회 페이지 규정 참고하세요.', createdAt: '2026-10-22T15:00:00+09:00' }] },
+    { id: 'p6', likes: 15, category: 'market', title: '비키니 포징 힐 235 (1회 착용) 나눔', nickname: '시즌오프', body: '클리어 12cm, 한 번 신었어요. 택배비만 받습니다. 댓글 주세요.', createdAt: '2026-10-19T11:00:00+09:00', views: 221, comments: [] },
   ];
-  const SEED_VERSION = 2;
+  const SEED_VERSION = 3;
   const localPosts = () => {
     let list = LS.get('stageon_posts', null);
     if (!list) {
@@ -1359,6 +1359,15 @@
       savePosts(list);
       return c;
     },
+    async like(id, on) {
+      if (API_BASE) return (await S.api('/api/posts/' + encodeURIComponent(id) + '/like', { method: 'POST', body: JSON.stringify({ on: !!on }) })).likes;
+      const list = localPosts();
+      const p = list.find((x) => x.id === id);
+      if (!p) throw new Error('글을 찾을 수 없어요.');
+      p.likes = Math.max(0, (p.likes || 0) + (on ? 1 : -1));
+      savePosts(list);
+      return p.likes;
+    },
     async remove(id, password) {
       if (API_BASE) return S.api('/api/posts/' + encodeURIComponent(id) + '/delete', { method: 'POST', body: JSON.stringify({ password }) });
       const list = localPosts();
@@ -1391,6 +1400,44 @@
       img.src = url;
     });
   const imgSrc = (p) => (p.image && (p.image.startsWith('data:') || p.image.startsWith('http')) ? p.image : ROOT + p.image);
+  // 좋아요: 이 기기에서 누른 글 목록
+  S.liked = () => LS.get('stageon_liked', []);
+  S.isLiked = (id) => S.liked().includes(id);
+  S.toggleLike = async (id) => {
+    const list = S.liked();
+    const i = list.indexOf(id);
+    const on = i < 0;
+    const likes = await S.community.like(id, on);
+    if (on) list.push(id);
+    else list.splice(i, 1);
+    LS.set('stageon_liked', list);
+    return { on, likes };
+  };
+  const likeBtn = (p, cls) => `<button class="like-btn ${cls || ''} ${S.isLiked(p.id) ? 'on' : ''}" data-like="${S.esc(p.id)}" aria-label="좋아요"><span class="heart">${S.isLiked(p.id) ? '♥' : '♡'}</span><span class="n">${p.likes || 0}</span></button>`;
+  const bindLikes = (root) => {
+    root.querySelectorAll('[data-like]').forEach((btn) => {
+      btn.addEventListener('click', async (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        if (btn.disabled) return;
+        btn.disabled = true;
+        try {
+          const r = await S.toggleLike(btn.dataset.like);
+          root.querySelectorAll(`[data-like="${btn.dataset.like}"]`).forEach((b) => {
+            b.classList.toggle('on', r.on);
+            b.querySelector('.heart').textContent = r.on ? '♥' : '♡';
+            b.querySelector('.n').textContent = r.likes;
+            b.classList.remove('pop');
+            void b.offsetWidth;
+            if (r.on) b.classList.add('pop');
+          });
+        } catch (ex) {
+          S.toast(ex.message === 'NO_API' ? '서버가 연결되지 않았어요.' : ex.message);
+        }
+        btn.disabled = false;
+      });
+    });
+  };
 
   pages.community = async () => {
     const root = document.getElementById('community');
@@ -1429,18 +1476,19 @@
           ? `<div class="owon-grid">${list.length ? list.map((p) => `
             <a class="owon-card" href="${ROOT}community.html?id=${encodeURIComponent(p.id)}">
               <div class="owon-img" style="background-image:url('${p.image ? imgSrc(p) : ''}')">${p.image ? '' : '<span>📝</span>'}</div>
-              <div class="owon-body"><b>${S.esc(p.nickname)}</b><p>${S.esc(p.title)}</p><small>${S.ago(p.createdAt)} · 댓글 ${p.commentCount || 0}</small></div>
+              <div class="owon-body"><b>${S.esc(p.nickname)}</b><p>${S.esc(p.title)}</p><div class="owon-foot"><small>${S.ago(p.createdAt)} · 댓글 ${p.commentCount || 0}</small>${likeBtn(p, 'sm')}</div></div>
             </a>`).join('') : '<div class="empty">아직 오운완 인증이 없어요. 오늘 운동 사진을 첫 번째로 올려보세요!</div>'}</div>`
           : `<div class="post-list">
           ${list.length ? list.map((p) => `
             <a class="post-row" href="${ROOT}community.html?id=${encodeURIComponent(p.id)}">
               <span class="pcat" style="background:${CAT[p.category] ? CAT[p.category].color : '#666'}">${CAT[p.category] ? CAT[p.category].name : p.category}</span>
-              <div class="pmain"><h3>${S.esc(p.title)} ${p.commentCount ? `<em>[${p.commentCount}]</em>` : ''}</h3><div class="pmeta"><span>${S.esc(p.nickname)}</span><span>${S.ago(p.createdAt)}</span><span>조회 ${p.views || 0}</span></div></div>
+              <div class="pmain"><h3>${S.esc(p.title)} ${p.commentCount ? `<em>[${p.commentCount}]</em>` : ''}</h3><div class="pmeta"><span>${S.esc(p.nickname)}</span><span>${S.ago(p.createdAt)}</span><span>조회 ${p.views || 0}</span><span class="${S.isLiked(p.id) ? 'liked' : ''}">♥ ${p.likes || 0}</span></div></div>
               ${p.image ? `<span class="pthumb" style="background-image:url('${imgSrc(p)}')"></span>` : ''}
             </a>`).join('') : '<div class="empty">아직 글이 없어요. 첫 글을 남겨보세요!</div>'}
         </div>`}`;
       const ow = root.querySelector('[data-owon-write]');
       if (ow) ow.addEventListener('click', openWrite);
+      bindLikes(root);
     };
 
     const renderDetail = async (id) => {
@@ -1467,6 +1515,7 @@
           </div>
           ${p.image ? `<div class="post-image"><img src="${imgSrc(p)}" alt="${S.esc(p.title)}" loading="lazy"></div>` : ''}
           <div class="pd-body">${S.esc(p.body).replace(/\n/g, '<br>')}</div>
+          <div class="like-row">${likeBtn(p, 'lg')}<span class="like-hint">${p.category === 'owon' ? '오늘도 수고한 선수에게 응원을 보내요' : '도움이 됐다면 좋아요를 눌러주세요'}</span></div>
           <div class="comments">
             <h2>댓글 <span>${(p.comments || []).length}</span></h2>
             <div class="comment-list">${(p.comments || []).map((cm) => `<div class="comment"><b>${S.esc(cm.nickname)}</b><p>${S.esc(cm.body).replace(/\n/g, '<br>')}</p><small>${S.ago(cm.createdAt)}</small></div>`).join('') || '<div class="empty" style="padding:20px 0">첫 댓글을 남겨보세요.</div>'}</div>
@@ -1504,6 +1553,7 @@
         }
       });
       root.querySelector('[data-write]').addEventListener('click', openWrite);
+      bindLikes(root);
     };
 
     const openWrite = () => {
