@@ -1,0 +1,11 @@
+name = "stageon-api"
+main = "worker.js"
+compatibility_date = "2026-01-01"
+
+[vars]
+ALLOWED_ORIGIN = "*"   # 운영 시 "https://stageon.kr" 등 실제 도메인으로 교체
+
+[[d1_databases]]
+binding = "DB"
+database_name = "stageon-db"
+database_id = "REPLACE_WITH_D1_ID"   # npx wrangler d1 create stageon-db 결과값

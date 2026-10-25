@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>대회 일정 | 스테이지온</title>
+<meta name="description" content="전국 피트니스·보디빌딩 대회 일정을 단체, 지역, 종목, 접수 상태별로 확인하세요.">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="competitions">
+<div id="site-header"></div>
+
+<main>
+  <section class="page-head">
+    <div class="inner">
+      <div class="crumb">홈 › 대회 일정</div>
+      <h1>대회일정 확인하기</h1>
+      <p>전국 단체의 대회를 날짜순으로 모았어요. 필터로 나에게 맞는 대회를 찾고 바로 접수하세요.</p>
+    </div>
+  </section>
+
+  <div class="inner list-layout">
+    <aside class="filter-side">
+      <div class="filter-bar">
+        <div class="search-box"><span>🔍</span><input id="q" type="search" placeholder="대회명, 단체, 지역, 종목 검색"></div>
+        <div class="quick-chips">
+          <button data-quick="all">전체</button>
+          <button data-quick="status:open">접수 중</button>
+          <button data-quick="status:soon">접수 예정</button>
+          <button data-quick="type:루키·노비스">루키·노비스</button>
+          <button data-quick="type:내추럴">내추럴</button>
+          <button data-quick="region:서울|경기">서울·경기</button>
+          <button data-quick="type:글로벌">해외</button>
+        </div>
+        <div class="filter-toolbar">
+          <span class="count" id="count"></span>
+          <div style="display:flex;gap:6px">
+            <select id="sort"><option value="date">빠른 일정순</option><option value="deadline">마감 임박순</option></select>
+            <button class="filter-toggle" id="filter-toggle">상세 필터</button>
+          </div>
+        </div>
+      </div>
+      <div class="filter-panel" id="filter-panel" style="margin-top:12px"></div>
+    </aside>
+    <section class="list-main">
+      <p class="notice-bar">일정·접수 기간은 각 단체 공식 공지 기준으로 변경될 수 있어요. 신청 전 공식 공지를 함께 확인하세요.</p>
+      <div id="list-main"></div>
+    </section>
+  </div>
+</main>
+
+<div id="site-footer"></div>
+<script src="js/app.js"></script>
+</body>
+</html>
