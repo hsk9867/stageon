@@ -264,6 +264,21 @@
             </div>
           </div>
           <nav class="ld-mobile-nav" data-mobile-nav>${NAV.map(link).join('')}</nav>
+          <nav class="ld-service-chips" aria-label="서비스 바로가기">
+            ${[
+              ['competitions.html', '대회 일정', 'competitions'],
+              ['competitions.html?status=open', '접수 중', ''],
+              ['prepare.html', '대회 준비', 'prepare'],
+              ['prepare.html?cat=posing', '포징 레슨', ''],
+              ['prepare.html?cat=diet', '식단·보충제', ''],
+              ['prepare.html?cat=bodyprofile', '바디프로필', ''],
+              ['prepare.html?cat=video', '영상 촬영', ''],
+              ['community.html', '커뮤니티', 'community'],
+              ['community.html?cat=owon', '오운완', ''],
+              ['guide.html', '준비 가이드', 'guide'],
+              ['my.html', '내 대회', 'my'],
+            ].map(([href, label, key]) => `<a href="${ROOT}${href}" class="${key && page === key ? 'active' : ''}">${label}</a>`).join('')}
+          </nav>
         </header>`;
       head.querySelector('[data-menu]').addEventListener('click', () => {
         head.querySelector('[data-mobile-nav]').classList.toggle('open');
@@ -293,6 +308,7 @@
           </div>
         </footer>
         <div class="ld-float">
+          <a href="${ROOT}community.html" class="ld-float-btn comm" aria-label="커뮤니티"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.4 8.4 0 01-3.8-.9L3 21l1.9-5.7a8.4 8.4 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.4 8.4 0 013.8-.9h.5a8.5 8.5 0 018 8v.5z"/></svg><span>커뮤니티</span></a>
           <a href="${ROOT}competitions.html?status=open" class="ld-float-btn apply">대회<br>신청</a>
           <button class="ld-float-btn top" aria-label="맨 위로" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
         </div>`;
@@ -1259,6 +1275,7 @@
 
   /* ---------- 커뮤니티 ---------- */
   const CATS = [
+    ['owon', '오운완', '#f59e0b'],
     ['free', '자유', '#626270'],
     ['review', '대회 후기', '#f26d6a'],
     ['qna', '질문', '#3b6fe0'],
@@ -1269,6 +1286,10 @@
   ];
   const CAT = Object.fromEntries(CATS.map(([id, name, color]) => [id, { id, name, color }]));
   const SEED_POSTS = [
+    { id: 'o1', category: 'owon', title: '오운완 🔥 등 데드리프트 5x5 마무리', nickname: '클래식피지크', image: 'images/photos/deadlift.jpg', body: 'D-7 마지막 고중량. 이제부턴 컨디셔닝만! 오늘도 모두 오운완 하세요.', createdAt: '2026-10-24T20:10:00+09:00', views: 150, comments: [{ nickname: '첫무대', body: '멋있어요 피킹 화이팅!', createdAt: '2026-10-24T20:40:00+09:00' }] },
+    { id: 'o2', category: 'owon', title: '오운완 · 어깨 덤벨 프레스 + 사이드 레터럴 20세트', nickname: '비키니준비중', image: 'images/photos/woman.jpg', body: '대회 12주 남았는데 어깨 라인 잡느라 사이드 레터럴만 20세트… 오늘 운동 완료!', createdAt: '2026-10-25T07:30:00+09:00', views: 88, comments: [] },
+    { id: 'o3', category: 'owon', title: '새벽 오운완, 공복 유산소 40분 + 하체', nickname: '수원러', image: 'images/photos/gym2.jpg', body: '공복 유산소 40분 끝내고 레그프레스 가볍게. 용인 대회 2주 전이라 다리 컨디션 체크 중입니다.', createdAt: '2026-10-25T06:05:00+09:00', views: 61, comments: [] },
+    { id: 'o4', category: 'owon', title: '오운완 — 가슴·삼두 펌핑 세션', nickname: '12주남음', image: 'images/photos/gym1.jpg', body: '덤벨 프레스 4세트, 케이블 플라이 4세트, 삼두 푸시다운 5세트. 내일은 휴식!', createdAt: '2026-10-23T21:50:00+09:00', views: 73, comments: [] },
     { id: 'p1', category: 'review', title: 'WNGP 수원 첫 출전 후기 (노비스 맨즈 피지크)', nickname: '첫무대', body: '생애 첫 대회 다녀왔어요. 계측은 생각보다 빨리 끝났고, 백스테이지가 추우니 큰 수건이랑 가운 꼭 챙기세요. 펌핑은 밴드로 충분했습니다. 태닝은 전날 1차 + 당일 보정 조합이 정답이었어요.', createdAt: '2026-04-02T10:12:00+09:00', views: 412, comments: [{ nickname: '비키니준비중', body: '축하드려요! 태닝은 어디서 하셨어요?', createdAt: '2026-04-02T12:00:00+09:00' }, { nickname: '첫무대', body: '수원역 근처 스튜디오요. 대회장 근처라 당일 보정도 편했어요.', createdAt: '2026-04-02T13:10:00+09:00' }] },
     { id: 'p2', category: 'qna', title: '비키니 vs 웰니스 어떤 종목이 맞을까요? (하체 발달형)', nickname: '12주남음', body: '160cm, 하체 비율이 큰 편이고 둔근이 발달한 체형인데 코치님은 웰니스를 추천하세요. 두 종목 다 나가본 분 계시면 심사 차이 알려주세요.', createdAt: '2026-10-20T21:30:00+09:00', views: 188, comments: [{ nickname: '웰니스3회', body: '하체 발달형이면 웰니스가 확실히 유리해요. 포징이 비키니랑 달라서 레슨은 따로 받으셔야 해요.', createdAt: '2026-10-21T09:00:00+09:00' }] },
     { id: 'p3', category: 'diet', title: '피킹 위크 탄수화물 로딩 어떻게 하시나요', nickname: '클래식피지크', body: '대회 D-7입니다. 수분 조절 없이 탄수만 올리는 방식으로 가려는데, 경험자분들 루틴 공유 부탁드려요.', createdAt: '2026-10-23T08:15:00+09:00', views: 97, comments: [] },
@@ -1276,11 +1297,19 @@
     { id: 'p5', category: 'posing', title: '맨즈 피지크 보드숏 규정 길이 질문', nickname: '보드숏고민', body: '무릎 위 몇 cm까지 허용되는지 단체마다 다른가요? WNGP 기준으로 아시는 분 계실까요.', createdAt: '2026-10-22T14:05:00+09:00', views: 140, comments: [{ nickname: '운영진', body: 'WNGP는 무릎 위 길이면 통과되고 로고는 작은 것만 허용돼요. 자세한 건 unmo.kr 대회 페이지 규정 참고하세요.', createdAt: '2026-10-22T15:00:00+09:00' }] },
     { id: 'p6', category: 'market', title: '비키니 포징 힐 235 (1회 착용) 나눔', nickname: '시즌오프', body: '클리어 12cm, 한 번 신었어요. 택배비만 받습니다. 댓글 주세요.', createdAt: '2026-10-19T11:00:00+09:00', views: 221, comments: [] },
   ];
+  const SEED_VERSION = 2;
   const localPosts = () => {
     let list = LS.get('stageon_posts', null);
     if (!list) {
-      list = SEED_POSTS;
+      list = SEED_POSTS.slice();
       LS.set('stageon_posts', list);
+      LS.set('stageon_posts_v', SEED_VERSION);
+    } else if (LS.get('stageon_posts_v', 1) !== SEED_VERSION) {
+      // 새 샘플 글(오운완 등)을 기존 목록에 합치기
+      const ids = new Set(list.map((p) => p.id));
+      SEED_POSTS.filter((p) => !ids.has(p.id)).forEach((p) => list.push(p));
+      LS.set('stageon_posts', list);
+      LS.set('stageon_posts_v', SEED_VERSION);
     }
     return list;
   };
@@ -1305,7 +1334,13 @@
       return p;
     },
     async create(data) {
-      if (API_BASE) return (await S.api('/api/posts', { method: 'POST', body: JSON.stringify(data) })).post;
+      if (API_BASE) {
+        if (data.image && data.image.startsWith('data:')) {
+          const up = await S.api('/api/upload', { method: 'POST', body: JSON.stringify({ data: data.image }) });
+          data.image = up.url;
+        }
+        return (await S.api('/api/posts', { method: 'POST', body: JSON.stringify(data) })).post;
+      }
       const list = localPosts();
       const p = Object.assign({ id: 'l' + Date.now().toString(36), createdAt: new Date().toISOString(), views: 0, comments: [] }, data);
       delete p.password;
@@ -1336,6 +1371,27 @@
     },
   };
 
+  // 이미지 파일 → 리사이즈된 JPEG data URL
+  S.readImage = (file, max) =>
+    new Promise((resolve, reject) => {
+      if (!file) return resolve('');
+      if (!/^image\//.test(file.type)) return reject(new Error('이미지 파일만 올릴 수 있어요.'));
+      const img = new Image();
+      const url = URL.createObjectURL(file);
+      img.onload = () => {
+        const scale = Math.min(1, (max || 1200) / Math.max(img.width, img.height));
+        const cv = document.createElement('canvas');
+        cv.width = Math.round(img.width * scale);
+        cv.height = Math.round(img.height * scale);
+        cv.getContext('2d').drawImage(img, 0, 0, cv.width, cv.height);
+        URL.revokeObjectURL(url);
+        resolve(cv.toDataURL('image/jpeg', 0.82));
+      };
+      img.onerror = () => reject(new Error('이미지를 읽을 수 없어요.'));
+      img.src = url;
+    });
+  const imgSrc = (p) => (p.image && (p.image.startsWith('data:') || p.image.startsWith('http')) ? p.image : ROOT + p.image);
+
   pages.community = async () => {
     const root = document.getElementById('community');
     const catBar = document.getElementById('comm-cats');
@@ -1363,15 +1419,28 @@
         root.innerHTML = `<div class="empty">${S.esc(e.message)}</div>`;
         return;
       }
+      const feed = category === 'owon';
+      const owonTop = category === 'all' ? list.filter((p) => p.category === 'owon' && p.image).slice(0, 6) : [];
       root.innerHTML = `
         ${compName ? `<p class="notice-bar" style="margin-bottom:12px">"${S.esc(compName)}" 관련 글을 보고 있어요. <a href="${ROOT}community.html" style="text-decoration:underline">전체 보기</a></p>` : ''}
-        <div class="post-list">
+        ${feed ? `<div class="owon-head"><div><h2>🔥 오운완 피드</h2><p>오늘 운동 완료! 그날그날 운동 사진을 올리고 서로 동기부여를 나눠요.</p></div><button class="btn btn-primary" data-owon-write>📷 오운완 올리기</button></div>` : ''}
+        ${owonTop.length ? `<div class="owon-strip"><div class="owon-strip-head"><b>🔥 오늘의 오운완</b><a href="${ROOT}community.html?cat=owon">피드 전체 →</a></div><div class="ld-track" style="padding:4px 0 8px">${owonTop.map((p) => `<a class="owon-mini" href="${ROOT}community.html?id=${encodeURIComponent(p.id)}" style="background-image:url('${imgSrc(p)}')"><span>${S.esc(p.nickname)}</span></a>`).join('')}</div></div>` : ''}
+        ${feed
+          ? `<div class="owon-grid">${list.length ? list.map((p) => `
+            <a class="owon-card" href="${ROOT}community.html?id=${encodeURIComponent(p.id)}">
+              <div class="owon-img" style="background-image:url('${p.image ? imgSrc(p) : ''}')">${p.image ? '' : '<span>📝</span>'}</div>
+              <div class="owon-body"><b>${S.esc(p.nickname)}</b><p>${S.esc(p.title)}</p><small>${S.ago(p.createdAt)} · 댓글 ${p.commentCount || 0}</small></div>
+            </a>`).join('') : '<div class="empty">아직 오운완 인증이 없어요. 오늘 운동 사진을 첫 번째로 올려보세요!</div>'}</div>`
+          : `<div class="post-list">
           ${list.length ? list.map((p) => `
             <a class="post-row" href="${ROOT}community.html?id=${encodeURIComponent(p.id)}">
               <span class="pcat" style="background:${CAT[p.category] ? CAT[p.category].color : '#666'}">${CAT[p.category] ? CAT[p.category].name : p.category}</span>
               <div class="pmain"><h3>${S.esc(p.title)} ${p.commentCount ? `<em>[${p.commentCount}]</em>` : ''}</h3><div class="pmeta"><span>${S.esc(p.nickname)}</span><span>${S.ago(p.createdAt)}</span><span>조회 ${p.views || 0}</span></div></div>
+              ${p.image ? `<span class="pthumb" style="background-image:url('${imgSrc(p)}')"></span>` : ''}
             </a>`).join('') : '<div class="empty">아직 글이 없어요. 첫 글을 남겨보세요!</div>'}
-        </div>`;
+        </div>`}`;
+      const ow = root.querySelector('[data-owon-write]');
+      if (ow) ow.addEventListener('click', openWrite);
     };
 
     const renderDetail = async (id) => {
@@ -1396,6 +1465,7 @@
             <h1>${S.esc(p.title)}</h1>
             <div class="pmeta"><span>${S.esc(p.nickname)}</span><span>${new Date(p.createdAt).toLocaleString('ko-KR')}</span><span>조회 ${p.views || 0}</span><button class="link-btn" data-del>삭제</button></div>
           </div>
+          ${p.image ? `<div class="post-image"><img src="${imgSrc(p)}" alt="${S.esc(p.title)}" loading="lazy"></div>` : ''}
           <div class="pd-body">${S.esc(p.body).replace(/\n/g, '<br>')}</div>
           <div class="comments">
             <h2>댓글 <span>${(p.comments || []).length}</span></h2>
@@ -1446,19 +1516,39 @@
           </div>
           <div class="field"><label>게시판<em>*</em></label><select name="category">${CATS.map(([id, name]) => `<option value="${id}" ${id === (category === 'all' ? 'free' : category) ? 'selected' : ''}>${name}</option>`).join('')}</select></div>
           <div class="field"><label>제목<em>*</em></label><input name="title" required maxlength="80" placeholder="제목" value="${compName ? S.esc('[' + compName + '] ') : ''}"></div>
-          <div class="field"><label>내용<em>*</em></label><textarea name="body" rows="8" required maxlength="5000" placeholder="대회 준비 중 궁금한 점, 후기, 팁을 자유롭게 남겨주세요. 개인정보·광고성 글은 삭제될 수 있어요."></textarea></div>
+          <div class="field"><label>사진 <span class="hint" style="font-weight:400">오운완은 사진 필수 · 자동으로 1200px 이하로 줄여서 올라가요</span></label>
+            <label class="img-drop" id="img-drop"><input type="file" name="image" accept="image/*" hidden><span class="img-drop-text">📷 사진 선택 또는 촬영</span><img id="img-preview" alt="" hidden></label></div>
+          <div class="field"><label>내용<em>*</em></label><textarea name="body" rows="6" required maxlength="5000" placeholder="대회 준비 중 궁금한 점, 후기, 팁, 오늘의 운동 기록을 자유롭게 남겨주세요. 개인정보·광고성 글은 삭제될 수 있어요."></textarea></div>
           <p class="form-error" id="write-error"></p>
           <button class="btn btn-primary btn-lg btn-block" type="submit">등록하기</button>
         </form>`, { cls: 'wide' });
       const form = box.querySelector('#write-form');
       const err = box.querySelector('#write-error');
+      let imageData = '';
+      const fileInput = form.querySelector('input[name=image]');
+      const preview = form.querySelector('#img-preview');
+      fileInput.addEventListener('change', async () => {
+        try {
+          imageData = await S.readImage(fileInput.files[0], 1200);
+          preview.src = imageData;
+          preview.hidden = !imageData;
+          form.querySelector('.img-drop-text').textContent = imageData ? '다른 사진 선택' : '📷 사진 선택 또는 촬영';
+        } catch (ex) {
+          imageData = '';
+          S.toast(ex.message);
+        }
+      });
       form.addEventListener('submit', async (e) => {
         e.preventDefault();
         const fd = new FormData(form);
         const showErr = (m) => { err.textContent = m; err.classList.add('show'); };
-        const d = { nickname: fd.get('nickname').trim(), password: fd.get('password'), category: fd.get('category'), title: fd.get('title').trim(), body: fd.get('body').trim() };
+        const d = { nickname: fd.get('nickname').trim(), password: fd.get('password'), category: fd.get('category'), title: fd.get('title').trim(), body: fd.get('body').trim(), image: imageData };
         if (!d.nickname || !d.password || !d.title || !d.body) return showErr('닉네임, 비밀번호, 제목, 내용을 모두 입력해 주세요.');
+        if (d.category === 'owon' && !d.image) return showErr('오운완 게시판은 운동 사진을 함께 올려주세요.');
         LS.set('stageon_nick', d.nickname);
+        const sbtn = form.querySelector('button[type=submit]');
+        sbtn.disabled = true;
+        sbtn.textContent = '등록 중...';
         try {
           const p = await S.community.create(d);
           S.closeModal();
@@ -1466,7 +1556,9 @@
           history.replaceState(null, '', ROOT + 'community.html?id=' + encodeURIComponent(p.id));
           renderDetail(p.id);
         } catch (ex) {
-          showErr(ex.message);
+          showErr(ex.message === 'NO_API' ? '서버가 연결되지 않았어요.' : ex.message);
+          sbtn.disabled = false;
+          sbtn.textContent = '등록하기';
         }
       });
     };

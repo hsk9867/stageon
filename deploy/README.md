@@ -28,6 +28,7 @@ cd ~/stageon
 npx wrangler login
 npx wrangler d1 create stageon-db          # database_id를 wrangler.toml에 입력
 npx wrangler d1 execute stageon-db --remote --file=schema.sql
+npx wrangler r2 bucket create stageon-images   # 커뮤니티 사진(오운완) 저장소
 npx wrangler secret put ADMIN_TOKEN        # 관리자 조회·삭제용 토큰 (TTY 필요)
 npx wrangler deploy
 ```
@@ -64,7 +65,11 @@ API_BASE가 비어 있으면 접수·주문·커뮤니티가 각 사용자의 �
 ```
 카테고리 추가는 `categories`에 `{id, name, icon, color, desc}`.
 
-## 6. 바꿔야 할 값
+## 6. 사진 출처
+- 대회 포스터: 각 단체 공식 페이지 (저작권 단체 소유, 사용 동의 권장)
+- 메인 카드뉴스·히어로·오운완 샘플 사진: Wikimedia Commons 퍼블릭 도메인/CC BY 사진. 목록과 작가는 `images/photos/CREDITS.md`. CC BY 사진은 출처 표기 유지.
+
+## 7. 바꿔야 할 값
 - `js/app.js` 상단 `SITE` (상호, 대표, 사업자번호, 전화, 메일, 입금 계좌)
 - `wrangler.toml` `ALLOWED_ORIGIN` → 실제 도메인
 - 상품 이미지: 현재 카테고리 색상 + 이모지. 실제 사진을 쓰려면 `productCard`/모달의 `.product-img`에 이미지 경로 필드(예: `image`)를 추가.

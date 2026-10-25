@@ -4,8 +4,13 @@ compatibility_date = "2026-01-01"
 
 [vars]
 ALLOWED_ORIGIN = "*"   # 운영 시 "https://stageon.kr" 등 실제 도메인으로 교체
+IMAGE_BASE = ""        # R2 공개 도메인(예: https://img.stageon.kr). 비우면 Worker의 /img/ 경로로 서빙
 
 [[d1_databases]]
 binding = "DB"
 database_name = "stageon-db"
 database_id = "REPLACE_WITH_D1_ID"   # npx wrangler d1 create stageon-db 결과값
+
+[[r2_buckets]]
+binding = "IMAGES"
+bucket_name = "stageon-images"   # npx wrangler r2 bucket create stageon-images

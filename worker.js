@@ -3,6 +3,8 @@
  *
  * 접수   POST /api/apply                     → { ok, code }
  * 주문   POST /api/order                     → { ok, code }
+ * 이미지   POST /api/upload {data: dataURL}      → { ok, url }  (R2 바인딩 IMAGES, IMAGE_BASE)
+ *        GET  /img/{key}                        R2 이미지 서빙 (IMAGE_BASE 미설정 시)
  * 커뮤니티
  *        GET  /api/posts?category=&q=&limit=  → { ok, rows }
  *        GET  /api/posts/:id                  → { ok, post }  (댓글 포함, 조회수 +1)
@@ -87,12 +89,32 @@ export default {
       return json({ ok: true, code, total });
     }
 
+    /* ---------- 이미지 업로드 (R2) ---------- */
+    if (path === '/api/upload' && request.method === 'POST') {
+      if (!env.IMAGES) return json({ ok: false, error: '이미지 저장소(R2)가 설정되지 않았습니다.' }, 500);
+      const b = await readJson();
+      const m = b && typeof b.data === 'string' && b.data.match(/^data:(image\/(jpeg|png|webp));base64,(.+)$/);
+      if (!m) return json({ ok: false, error: '이미지 형식이 올바르지 않습니다.' }, 400);
+      const bytes = Uint8Array.from(atob(m[3]), (c) => c.charCodeAt(0));
+      if (bytes.length > 3 * 1024 * 1024) return json({ ok: false, error: '이미지는 3MB 이하로 올려주세요.' }, 413);
+      const ext = m[2] === 'jpeg' ? 'jpg' : m[2];
+      const key = `posts/${new Date().toISOString().slice(0, 10)}/${mkId()}.${ext}`;
+      await env.IMAGES.put(key, bytes, { httpMetadata: { contentType: m[1], cacheControl: 'public, max-age=31536000' } });
+      const base = (env.IMAGE_BASE || '').replace(/\/$/, '');
+      return json({ ok: true, key, url: base ? `${base}/${key}` : `${url.origin}/img/${key}` });
+    }
+    if (path.startsWith('/img/') && request.method === 'GET' && env.IMAGES) {
+      const obj = await env.IMAGES.get(path.slice(5));
+      if (!obj) return new Response('Not found', { status: 404 });
+      return new Response(obj.body, { headers: { 'Content-Type': obj.httpMetadata?.contentType || 'image/jpeg', 'Cache-Control': 'public, max-age=31536000', 'Access-Control-Allow-Origin': origin } });
+    }
+
     /* ---------- 커뮤니티 ---------- */
     if (path === '/api/posts' && request.method === 'GET') {
       const category = url.searchParams.get('category') || 'all';
       const q = (url.searchParams.get('q') || '').trim();
       const limit = Math.min(Number(url.searchParams.get('limit') || 50), 200);
-      let sql = `SELECT p.id, p.category, p.title, p.nickname, p.views, p.created_at,
+      let sql = `SELECT p.id, p.category, p.title, p.nickname, p.views, p.created_at, p.image,
                    (SELECT COUNT(*) FROM comments c WHERE c.post_id = p.id) AS comment_count
                  FROM posts p WHERE p.deleted = 0`;
       const binds = [];
@@ -111,13 +133,14 @@ export default {
       const body = String(b.body || '').trim().slice(0, 5000);
       const category = String(b.category || 'free').slice(0, 20);
       const password = String(b.password || '');
+      const image = typeof b.image === 'string' && /^https?:\/\//.test(b.image) ? b.image.slice(0, 500) : '';
       if (!nickname || !title || !body || !password) return json({ ok: false, error: '닉네임, 비밀번호, 제목, 내용을 입력해 주세요.' }, 400);
       // 도배 방지: 같은 IP 1분 내 3건 초과 금지
       const recent = await env.DB.prepare("SELECT COUNT(*) AS n FROM posts WHERE ip = ? AND created_at > datetime('now', '-1 minute')").bind(ip).first();
       if (recent && recent.n >= 3) return json({ ok: false, error: '잠시 후 다시 시도해 주세요.' }, 429);
       const id = mkId();
-      await env.DB.prepare('INSERT INTO posts (id, category, title, body, nickname, pw_hash, ip, views, deleted, created_at) VALUES (?, ?, ?, ?, ?, ?, ?, 0, 0, datetime(\'now\'))')
-        .bind(id, category, title, body, nickname, await sha256(password), ip)
+      await env.DB.prepare('INSERT INTO posts (id, category, title, body, nickname, pw_hash, ip, image, views, deleted, created_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, 0, 0, datetime(\'now\'))')
+        .bind(id, category, title, body, nickname, await sha256(password), ip, image)
         .run();
       const post = await env.DB.prepare('SELECT * FROM posts WHERE id = ?').bind(id).first();
       return json({ ok: true, post: Object.assign(rowToPost(post), { body, comments: [] }) });
@@ -192,7 +215,7 @@ function mkId() {
   return Date.now().toString(36) + Math.random().toString(36).slice(2, 6);
 }
 function rowToPost(r) {
-  return { id: r.id, category: r.category, title: r.title, nickname: r.nickname, views: r.views, createdAt: r.created_at, commentCount: r.comment_count || 0 };
+  return { id: r.id, category: r.category, title: r.title, nickname: r.nickname, views: r.views, createdAt: r.created_at, image: r.image || '', commentCount: r.comment_count || 0 };
 }
 function safeJson(s) {
   try {

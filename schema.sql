@@ -59,6 +59,7 @@ CREATE TABLE IF NOT EXISTS posts (
   nickname TEXT NOT NULL,
   pw_hash TEXT NOT NULL,
   ip TEXT,
+  image TEXT,                                  -- 업로드 이미지 URL (오운완 등)
   views INTEGER NOT NULL DEFAULT 0,
   deleted INTEGER NOT NULL DEFAULT 0,
   created_at TEXT NOT NULL DEFAULT (datetime('now'))
