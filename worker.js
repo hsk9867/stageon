@@ -115,7 +115,7 @@ export default {
       const category = url.searchParams.get('category') || 'all';
       const q = (url.searchParams.get('q') || '').trim();
       const limit = Math.min(Number(url.searchParams.get('limit') || 50), 200);
-      let sql = `SELECT p.id, p.category, p.title, p.nickname, p.views, p.likes, p.created_at, p.image,
+      let sql = `SELECT p.id, p.category, p.title, p.nickname, p.views, p.likes, p.created_at, p.image, p.tag,
                    (SELECT COUNT(*) FROM comments c WHERE c.post_id = p.id) AS comment_count
                  FROM posts p WHERE p.deleted = 0`;
       const binds = [];
@@ -134,14 +134,15 @@ export default {
       const body = String(b.body || '').trim().slice(0, 5000);
       const category = String(b.category || 'free').slice(0, 20);
       const password = String(b.password || '');
+      const tag = String(b.tag || '').slice(0, 20);
       const image = typeof b.image === 'string' && /^https?:\/\//.test(b.image) ? b.image.slice(0, 500) : '';
       if (!nickname || !title || !body || !password) return json({ ok: false, error: '닉네임, 비밀번호, 제목, 내용을 입력해 주세요.' }, 400);
       // 도배 방지: 같은 IP 1분 내 3건 초과 금지
       const recent = await env.DB.prepare("SELECT COUNT(*) AS n FROM posts WHERE ip = ? AND created_at > datetime('now', '-1 minute')").bind(ip).first();
       if (recent && recent.n >= 3) return json({ ok: false, error: '잠시 후 다시 시도해 주세요.' }, 429);
       const id = mkId();
-      await env.DB.prepare('INSERT INTO posts (id, category, title, body, nickname, pw_hash, ip, image, views, deleted, created_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, 0, 0, datetime(\'now\'))')
-        .bind(id, category, title, body, nickname, await sha256(password), ip, image)
+      await env.DB.prepare('INSERT INTO posts (id, category, title, body, nickname, pw_hash, ip, image, tag, views, deleted, created_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, 0, 0, datetime(\'now\'))')
+        .bind(id, category, title, body, nickname, await sha256(password), ip, image, tag)
         .run();
       const post = await env.DB.prepare('SELECT * FROM posts WHERE id = ?').bind(id).first();
       return json({ ok: true, post: Object.assign(rowToPost(post), { body, comments: [] }) });
@@ -223,7 +224,7 @@ function mkId() {
   return Date.now().toString(36) + Math.random().toString(36).slice(2, 6);
 }
 function rowToPost(r) {
-  return { id: r.id, category: r.category, title: r.title, nickname: r.nickname, views: r.views, createdAt: r.created_at, image: r.image || '', likes: r.likes || 0, commentCount: r.comment_count || 0 };
+  return { id: r.id, category: r.category, title: r.title, nickname: r.nickname, views: r.views, createdAt: r.created_at, image: r.image || '', tag: r.tag || '', likes: r.likes || 0, commentCount: r.comment_count || 0 };
 }
 function safeJson(s) {
   try {

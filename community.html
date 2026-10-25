@@ -4,32 +4,32 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>커뮤니티 | 스테이지온</title>
-<meta name="description" content="대회를 준비하는 선수들이 후기, 질문, 식단·포징 팁, 대회 메이트를 나누는 커뮤니티.">
+<meta name="description" content="대회를 준비하는 선수들이 후기, 질문, 식단·포징 팁, 오운완 인증, 대회 메이트를 나누는 커뮤니티.">
 <link rel="stylesheet" href="css/style.css">
 </head>
 <body data-page="community">
 <div id="site-header"></div>
 
 <main>
-  <section class="page-head">
+  <section class="comm-top">
     <div class="inner">
-      <div class="crumb">홈 › 커뮤니티</div>
-      <h1>커뮤니티</h1>
-      <p>대회 준비하는 선수들끼리 후기·질문·팁을 나누고, 같이 갈 대회 메이트를 찾아요.</p>
+      <div class="comm-title">
+        <h1>선수 커뮤니티</h1>
+        <div class="comm-icons">
+          <button class="icon-btn" id="comm-search-toggle" aria-label="검색"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg></button>
+          <a class="icon-btn" href="my.html" aria-label="내 대회"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.6-7 8-7s8 3 8 7"/></svg></a>
+        </div>
+      </div>
+      <div class="comm-tabs"><button data-ctab="all" class="active">전체</button><button data-ctab="owon">오운완</button></div>
     </div>
   </section>
 
   <div class="inner comm-layout">
-    <div class="comm-toolbar">
-      <div class="cat-chips" id="comm-cats"></div>
-      <div class="comm-actions">
-        <div class="search-box"><span>🔍</span><input id="comm-q" type="search" placeholder="제목·내용 검색"></div>
-        <button class="btn btn-primary" id="comm-write">✏️ 글쓰기</button>
-      </div>
-    </div>
-    <p class="notice-bar">서로 존중하는 커뮤니티를 위해 비방·광고·개인정보 노출 글은 예고 없이 삭제돼요. 글 삭제는 작성 시 입력한 비밀번호로 가능해요.</p>
+    <div class="search-box" id="comm-search" hidden><span>🔍</span><input id="comm-q" type="search" placeholder="제목·내용·닉네임 검색"></div>
     <div id="community"></div>
   </div>
+
+  <button class="fab-write" id="comm-write" aria-label="글쓰기"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg></button>
 </main>
 
 <div id="site-footer"></div>
